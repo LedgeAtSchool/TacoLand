@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Taco Land</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #F7F7F7;
+			margin: 0;
+		}
+		header {
+			background-color: #FFC107;
+			padding: 10px;
+			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+		}
+		h1 {
+			margin: 0;
+			text-align: center;
+			color: #FFFFFF;
+			font-size: 48px;
+			text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+		}
+		main {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 50px 20px;
+		}
+		.menu {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+			background-color: #FFFFFF;
+			padding: 20px;
+			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+			border-radius: 10px;
+		}
+		.menu h2 {
+			margin-top: 0;
+			text-align: center;
+			color: #FFC107;
+			font-size: 36px;
+		}
+		.menu ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.menu li {
+			font-size: 24px;
+			margin-bottom: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.menu li span {
+			color: #FFC107;
+			font-weight: bold;
+			font-size: 36px;
+		}
+		.contact {
+			text-align: center;
+			margin-top: 50px;
+			background-color: #FFFFFF;
+			padding: 20px;
+			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+			border-radius: 10px;
+		}
+		.contact h2 {
+			margin-top: 0;
+			text-align: center;
+			color: #FFC107;
+			font-size: 36px;
+		}
+		.contact p {
+			font-size: 20px;
+			margin-top: 10px;
+			color: #555555;
+		}
+		.contact p:last-child {
+			margin-bottom: 0;
+		}
+		.footer {
+			background-color: #111111;
+			color: #FFFFFF;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer p {
+			margin: 0;
+		}
+		.button {
+			background-color: #FFC107;
+			color: #FFFFFF;
+			font-size: 24px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
+		.button:hover {
+			background-color: #FFA000;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Taco Land</h1>
+	</header>
+
+	<main>
+		<section class="menu">
+			<h2>Our Menu</h2>
+			<ul>
+				<li>Taco<span>$1.00</span></li>
+				<li>Soda<span>$0.59</span></li>
+				<li>Cookies<span>$0.10</span></li>
+				<li>Burrito<span>$2.50</span></li>
+				<li>Nachos<span>$3.25</span></li>
+				<li>Quesadilla<span>$2.75</span></li>
+			</ul>
+			<p>Total: $<span id="total">0.00</span></p>
+			<button class="button" onclick="addToCart('Taco', 1.00)">Add Taco to Cart</button>
+			<button class="button" onclick="addToCart('Soda', 0.59)">Add Soda to Cart</button>
+			<button class="button" onclick="addToCart('Cookies', 0.10)">Add Cookies to Cart</button>
+			<button class="button" onclick="addToCart('Burrito', 2.50)">Add Burrito to Cart</button>
+			<button class="button" onclick="addToCart('Nachos', 3.25)">Add Nachos to Cart</button>
+			<button class="button" onclick="addToCart('Quesadilla', 2.75)">Add Quesadilla to Cart</button>
+			<button class="button" onclick="buyItems()">Buy</button>
+		</section>
+
+		<section class="contact">
+			<h2>Contact Us</h2>
+			<p>123 Main St. Anytown, USA</p>
+			<p>Phone: (555) 555-5555</p>
+			<p>Email: info@tacoland.com</p>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<p>&copy; 2023 Taco Land. All rights reserved.</p>
+	</footer>
+
+	<script>
+		let total = 0;
+
+		function addToCart(item, price) {
+			total += price;
+			document.getElementById("total").innerHTML = total.toFixed(2);
+			alert(item + " added to cart!");
+		}
+
+		function buyItems() {
+			alert("Total purchase: $" + total.toFixed(2));
+			total = 0;
+			document.getElementById("total").innerHTML = total.toFixed(2);
+		}
+	</script>
+</body>
+</html>
