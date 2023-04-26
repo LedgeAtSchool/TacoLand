@@ -35,32 +35,8 @@
 			background-color: #FFFFFF;
 			padding: 20px;
 			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-			border-radius: 10px;
 		}
-		.menu h2 {
-			margin-top: 0;
-			text-align: center;
-			color: #FFC107;
-			font-size: 36px;
-		}
-		.menu ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		}
-		.menu li {
-			font-size: 24px;
-			margin-bottom: 20px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-		.menu li span {
-			color: #FFC107;
-			font-weight: bold;
-			font-size: 36px;
-		}
-		.contact {
+    .contact {
 			text-align: center;
 			margin-top: 50px;
 			background-color: #FFFFFF;
@@ -82,27 +58,95 @@
 		.contact p:last-child {
 			margin-bottom: 0;
 		}
-		.footer {
-			background-color: #111111;
-			color: #FFFFFF;
-			padding: 20px;
+		h2 {
+			margin-top: 0;
+			font-size: 36px;
+			color: #FFC107;
 			text-align: center;
+			text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 		}
-		.footer p {
+		ul {
+			list-style: none;
 			margin: 0;
+			padding: 0;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 20px;
+		}
+		li {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background-color: #F7F7F7;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+		}
+		li span:last-child {
+			font-weight: bold;
+			color: #FFC107;
 		}
 		.button {
 			background-color: #FFC107;
 			color: #FFFFFF;
-			font-size: 24px;
 			padding: 10px 20px;
 			border: none;
 			border-radius: 5px;
+			font-size: 18px;
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 			cursor: pointer;
-			transition: background-color 0.3s ease-in-out;
+			margin-top: 20px;
 		}
 		.button:hover {
 			background-color: #FFA000;
+		}
+		p {
+			margin: 20px 0 0 0;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: right;
+		}
+		#total {
+			color: #FFC107;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+		.quantity {
+			margin-left: 10px;
+			font-weight: bold;
+			color: #FFC107;
+		}
+    input[type="text"], textarea {
+			width: 100%;
+			font-size: 16px;
+			padding: 5px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			border: none;
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+		}
+		textarea {
+			height: 100px;
+		}
+		input[type="submit"] {
+			background-color: #FFC107;
+			color: #FFFFFF;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 18px;
+			box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #FFA000;
+		}
+		.footer {
+			background-color: #222222;
+			color: #FFFFFF;
+			padding: 20px;
+			text-align: center;
+			font-size: 14px;
 		}
 	</style>
 </head>
@@ -110,20 +154,19 @@
 	<header>
 		<h1>Taco Land</h1>
 	</header>
-
 	<main>
 		<section class="menu">
 			<h2>Our Menu</h2>
 			<ul>
-				<li>Taco<span>$1.00</span></li>
-				<li>Soda<span>$0.59</span></li>
-				<li>Cookies<span>$0.10</span></li>
-				<li>Burrito<span>$2.50</span></li>
-				<li>Nachos<span>$3.25</span></li>
-				<li>Quesadilla<span>$2.75</span></li>
-				<li>Hotdog<span>$5.00</span></li>
-				<li>Ice Cream<span>$2.50</span></li>
-				<li>Water<span>!!FREE!!</span></li>
+				<li>Taco<span>$1.00</span><span id="taco-quantity" class="quantity"></span></li>
+				<li>Soda<span>$0.59</span><span id="soda-quantity" class="quantity"></span></li>
+				<li>Cookies<span>$0.10</span><span id="cookies-quantity" class="quantity"></span></li>
+				<li>Burrito<span>$2.50</span><span id="burrito-quantity" class="quantity"></span></li>
+				<li>Nachos<span>$3.25</span><span id="nachos-quantity" class="quantity"></span></li>
+				<li>Quesadilla<span>$2.75</span><span id="quesadilla-quantity" class="quantity"></span></li>
+				<li>Hotdog<span>$5.00</span><span id="hotdog-quantity" class="quantity"></span></li>
+				<li>Ice Cream<span>$2.50</span><span id="ice-cream-quantity" class="quantity"></span></li>
+				<li>Water<span>!!FREE!!</span><span id="water-quantity" class="quantity"></span></li>
 			</ul>
 			<p>Total: $<span id="total">0.00</span></p>
 			<button class="button" onclick="addToCart('Taco', 1.00)">Add Taco to Cart</button>
@@ -137,32 +180,65 @@
 			<button class="button" onclick="addToCart('Water', 0.00)">Add Water to Cart</button>
 			<button class="button" onclick="buyItems()">Buy</button>
 		</section>
-
-		<section class="contact">
+    <section class="contact">
 			<h2>Contact Us</h2>
+      <center>
 			<p>123 Main St. Anytown, USA</p>
 			<p>Phone: (555) 555-5555</p>
 			<p>Email: info@tacoland.com</p>
+      </center>
 		</section>
+    <section class="contact">
+      <h2>Want to send a message? Send it here!</h2>
+    <form>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" required>
+				<label for="email">Email:</label>
+				<input type="text" id="email" name="email" required>
+				<label for="message">Message:</label>
+				<textarea id="message" name="message" required></textarea>
+				<input type="submit" value="Send">
+			</form>
+    </section>
 	</main>
-
-	<footer class="footer">
+  <footer class="footer">
 		<p>&copy; 2023 Taco Land. All rights reserved.</p>
 	</footer>
-
 	<script>
 		let total = 0;
+		let cart = {};
 
 		function addToCart(item, price) {
-			total += price;
-			document.getElementById("total").innerHTML = total.toFixed(2);
-			alert(item + " added to cart!");
+		    if (cart[item]) {
+		        cart[item].quantity += 1;
+		    } else {
+		        cart[item] = {
+		            price: price,
+		            quantity: 1
+		        };
+		    }
+		    total += price;
+		    document.getElementById("total").innerHTML = total.toFixed(2);
+		    document.getElementById(item.toLowerCase() + "-quantity").innerHTML = cart[item].quantity;
+		    alert(item + " added to cart!");
 		}
 
 		function buyItems() {
-			alert("Total purchase: $" + total.toFixed(2));
-			total = 0;
-			document.getElementById("total").innerHTML = total.toFixed(2);
+			if (total === 0) {
+				alert("Your cart is empty!");
+			} else {
+				let items = "";
+				for (let item in cart) {
+					items += item + " x " + cart[item].quantity + "\n";
+				}
+				alert("Thank you for your purchase!\n\nItems:\n" + items + "\nTotal: $" + total.toFixed(2));
+				total = 0;
+				cart = {};
+				document.getElementById("total").innerHTML = "0.00";
+				for (let item of document.getElementsByClassName("quantity")) {
+					item.innerHTML = "";
+				}
+			}
 		}
 	</script>
 </body>
