@@ -209,19 +209,24 @@
 		let cart = {};
 
 		function addToCart(item, price) {
-		    if (cart[item]) {
-		        cart[item].quantity += 1;
-		    } else {
-		        cart[item] = {
-		            price: price,
-		            quantity: 1
-		        };
-		    }
-		    total += price;
-		    document.getElementById("total").innerHTML = total.toFixed(2);
-		    document.getElementById(item.toLowerCase() + "-quantity").innerHTML = cart[item].quantity;
-		    alert(item + " added to cart!");
-		}
+    if (cart[item]) {
+        cart[item].quantity += 1;
+    } else {
+        cart[item] = {
+            price: price,
+            quantity: 1
+        };
+    }
+    total += price;
+    document.getElementById("total").innerHTML = total.toFixed(2);
+    if (item === "Ice Cream") {
+        document.getElementById("ice-cream-quantity").innerHTML = cart[item].quantity;
+        alert(item + " added to cart!");
+    } else {
+        document.getElementById(item.toLowerCase() + "-quantity").innerHTML = cart[item].quantity;
+        alert(item + " added to cart!");
+    }
+}
 
 		function buyItems() {
 			if (total === 0) {
